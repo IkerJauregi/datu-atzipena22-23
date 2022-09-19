@@ -16,6 +16,13 @@ public class CopyCharactersOrdezkatuz {
 
             int c;
             while ((c = inputStream.read()) != -1) {
+                //if letra a bada o gaitik aldatuko du
+                if(c == 97){
+                    c = 111;
+                }if(c == 65){
+                    c = 79;
+                }
+                //Characteroutput artxiboan idaztendau
                 outputStream.write(c);
             }
         } finally {
