@@ -2,7 +2,9 @@ package iostreams;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
+/*
+ * 
+ */
 public class CopyCharactersMaiuskulaz {
     public static void main(String[] args) throws IOException {
 
