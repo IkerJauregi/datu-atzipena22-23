@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 /*
- * 
+ * Minuskulan dagoena maiskulaz jartzen du. Asci kodea erabiliz
  */
 public class CopyCharactersMaiuskulaz {
     public static void main(String[] args) throws IOException {
