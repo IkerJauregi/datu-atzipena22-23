@@ -12,7 +12,7 @@ import java.io.Reader;
 import java.io.FileReader;
 
 /**
- * Hello world!
+ * Kodea ez dago optimizatuta beraz funtzionatzen duenean dena optimizatu
  *
  */
 public class App {
@@ -55,20 +55,32 @@ public class App {
 
     public static void mendienZerrenda() {
         Scanner s = null;
+        int saltuak = 0;
+
         try {
-        s = new Scanner(new BufferedReader(new FileReader("Mendiak.csv")));
-        s.useDelimiter(";");
-        // Mientras se escanee algo "nuevo" lo imprimira
-        while(s.hasNext()){
-            System.out.print(s.next() + ",");
-        }
+            s = new Scanner(new BufferedReader(new FileReader("Mendiak.csv")));
+            s.useDelimiter(";");
+            // Mientras se escanee algo "nuevo" lo imprimira
+            while (s.hasNext()) {
+                if (saltuak < 2) {
+                    System.out.print(s.next() + " ");
+                } else {
+                        
+                        // https://reactgo.com/java-remove-last-comma-of-string/#:~:text=We%20remove%20the%20last%20comma,last%20index%20that%20is%20string.
+                        System.out.print(s.next() + ",");
+
+                        // String moztu = s.next();
+                        // moztu = moztu.substring(0, moztu.length() -1);
+                        // System.out.print(moztu);
+                }
+                saltuak++;
+            }
         } catch (Exception e) {
-        // TODO: handle exception
-        System.out.println(e);
+            System.out.println(e);
         }
     }
+
     public static void mendirikAltuena() {
-        // 
     }
 
     public static void mendiakEsportatu() {
