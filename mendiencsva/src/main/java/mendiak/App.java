@@ -81,6 +81,7 @@ public class App {
     }
 
     public static void mendirikAltuena() {
+        ArrayList<String> mendiak = new ArrayList<>();
     }
 
     public static void mendiakEsportatu() {
