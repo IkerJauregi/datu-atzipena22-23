@@ -2,6 +2,8 @@ package mendiak;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,8 +20,7 @@ import java.io.FileReader;
 public class App {
     public static void main(String[] args) throws Exception {
         // I/O Stream
-        FileInputStream input = null;
-        FileInputStream output = null;
+
         // Menua
         Scanner in = new Scanner(System.in);
         int aukera = 0;
@@ -53,38 +54,42 @@ public class App {
         in.next();
     }
 
+    // Taula moduan mendien zerrenda atera
     public static void mendienZerrenda() {
-        Scanner s = null;
-        int saltuak = 0;
-
+        Scanner mendiak;
+        String lerroa;
+        ArrayList<String> mendienZerrenda = new ArrayList<String>();
         try {
-            s = new Scanner(new BufferedReader(new FileReader("Mendiak.csv")));
-            s.useDelimiter(";");
-            // Mientras se escanee algo "nuevo" lo imprimira
-            while (s.hasNext()) {
-                if (saltuak < 2) {
-                    System.out.print(s.next() + " ");
-                } else {
-                        
-                        // https://reactgo.com/java-remove-last-comma-of-string/#:~:text=We%20remove%20the%20last%20comma,last%20index%20that%20is%20string.
-                        System.out.print(s.next() + ",");
+            FileReader fitxategia = new FileReader("Mendiak.csv");
+            // Guarda el fichero en la memoria temporal
+            BufferedReader buffer = new BufferedReader(fitxategia);
+            lerroa = buffer.readLine();
 
-                        // String moztu = s.next();
-                        // moztu = moztu.substring(0, moztu.length() -1);
-                        // System.out.print(moztu);
-                }
-                saltuak++;
+            //Lee toda la linea y cuando encuentra un null entra aqui
+            while (lerroa != null) {
+                // Añade cada linea al array llamada gehitu
+                String[] gehitu;
+                // Vuelve a leer la linea y separa los datos
+                gehitu = lerroa.split(";");
+                // Vuelve a juntar todos los datos
+                Collections.addAll(mendienZerrenda, gehitu);
             }
+
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    // Mendi altuenaren izena atera
     public static void mendirikAltuena() {
-        ArrayList<String> mendiak = new ArrayList<>();
+
     }
 
+    // Araba.csv Bizkaia.csv eta Gipuzkoa.csv atera banan banan
     public static void mendiakEsportatu() {
+        ArrayList<String> bizkaiaMendiak = new ArrayList<String>();
+        ArrayList<String> gipuzkoaMendiak = new ArrayList<String>();
+        ArrayList<String> arabaMendiak = new ArrayList<String>();
 
     }
 }
