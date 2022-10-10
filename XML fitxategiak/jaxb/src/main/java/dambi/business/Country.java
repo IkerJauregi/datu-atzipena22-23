@@ -27,6 +27,7 @@ public class Country {
     LocalDate foundation;
     String continent;
     int population;
+    int importance;
 
     public int getPopulation() {
         return population;
@@ -35,6 +36,9 @@ public class Country {
     @XmlElement(name = "Country_Population")
     public void setPopulation(int population) {
         this.population = population;
+    }
+    public int getImportance(){
+        return importance;
     }
 
     public String getName() {
