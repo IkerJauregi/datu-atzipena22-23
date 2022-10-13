@@ -40,7 +40,9 @@ public class Country {
     public int getImportance(){
         return importance;
     }
-
+    public void setImportance(int importance){
+        this.importance = importance;
+    }
     public String getName() {
         return name;
     }
