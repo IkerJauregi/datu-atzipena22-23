@@ -89,14 +89,13 @@ public class MainController {
 		
 	}
 
-	// @PostMapping(path = "/saioberria") // Map ONLY POST Requests
-	// public @ResponseBody String addNewSaioa(@RequestParam int iraupena) {
-	// 	// @ResponseBody means the returned String is the response, not a view name
-	// 	// @RequestParam means it is a parameter from the GET or POST request
-
-	// 	Saioa s = new Saioa();
-	// 	s.setDuration(iraupena);
-	// 	userRepository.save(n);
-	// 	return "Saved";
-	// }
+	//@PostMapping(path = "/saioberria") // Map ONLY POST Requests
+	//public @ResponseBody String addNewSaioa(@RequestParam int iraupena) {
+	//	// @ResponseBody means the returned String is the response, not a view name
+	//	// @RequestParam means it is a parameter from the GET or POST request
+	//	Saioa s = new Saioa();
+	//	s.setDuration(iraupena);
+	//	userRepository.save(n);
+	//	return "Saved";
+	//}
 }
