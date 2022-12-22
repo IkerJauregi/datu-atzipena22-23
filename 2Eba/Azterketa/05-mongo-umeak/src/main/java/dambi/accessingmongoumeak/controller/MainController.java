@@ -39,9 +39,9 @@ public class MainController {
 		return umeaRepository.getAllOpariakByUmeaIzena(umeaIzena);
 	}
 	//Hiru opariak
-	@GetMapping(path = "/findAllPresents")
-	public StringBuffer findAllPresents() {
-		return findAllPresents();
+	@GetMapping(path = "/hiruOpariBainoGehiago")
+	public List<Umea> hiru_Opari_BainoGehiago() {
+		return umeaRepository.hiru_Opari_BainoGehiago();
 	}
 
 	@PostMapping(path = "/umeberria") // Map ONLY POST Requests

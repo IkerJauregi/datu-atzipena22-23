@@ -12,5 +12,5 @@ public interface UmeaRepository {
     long delete(String izena);
     List<String> getAllOpariakByUmeaIzena(String izena);
     void addOpariToUmea(String izena, String opariak);
-    String findAllPresents();
+    List<Umea> hiru_Opari_BainoGehiago();
 }

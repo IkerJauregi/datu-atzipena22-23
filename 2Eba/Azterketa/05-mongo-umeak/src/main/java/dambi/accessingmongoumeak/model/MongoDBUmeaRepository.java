@@ -16,17 +16,16 @@ import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 
-
 import static com.mongodb.client.model.Filters.eq;
 
 @Repository
 public class MongoDBUmeaRepository implements UmeaRepository {
 
     private static final TransactionOptions txnOptions = TransactionOptions.builder()
-                                                                           .readPreference(ReadPreference.primary())
-                                                                           .readConcern(ReadConcern.MAJORITY)
-                                                                           .writeConcern(WriteConcern.MAJORITY)
-                                                                           .build();
+            .readPreference(ReadPreference.primary())
+            .readConcern(ReadConcern.MAJORITY)
+            .writeConcern(WriteConcern.MAJORITY)
+            .build();
     @Autowired
     private MongoClient client;
     private MongoCollection<Umea> umeaCollection;
@@ -41,9 +40,24 @@ public class MongoDBUmeaRepository implements UmeaRepository {
         return umeaCollection.find().into(new ArrayList<>());
     }
 
+    public List<Umea> hiru_Opari_BainoGehiago() {
+
+        List<Umea> umeak = umeaCollection.find().into(new ArrayList<>());
+        List<Umea> umeak_Opari_Asko = new ArrayList<>();
+
+        for (int i = 0; i < umeak.size(); ++i) {
+
+            if (umeak.get(i).getOpariak().size() >= 3) {
+                umeak_Opari_Asko.add(umeak.get(i));
+            }
+        }
+        return umeak_Opari_Asko;
+        // return umea.getOpariak();
+    }
+
     @Override
     public Umea findById(String id) {
-        return umeaCollection.find(eq("_id", new ObjectId(id))).first();        
+        return umeaCollection.find(eq("_id", new ObjectId(id))).first();
     }
 
     @Override
@@ -59,27 +73,28 @@ public class MongoDBUmeaRepository implements UmeaRepository {
     }
 
     @Override
-    public List<String> getAllOpariakByUmeaIzena(String izena){
+    public List<String> getAllOpariakByUmeaIzena(String izena) {
         Umea umea = umeaCollection.find(eq("izena", izena)).first();
-        List<String> opariak = umea.getOpariak(); 
+        List<String> opariak = umea.getOpariak();
         return opariak;
     }
 
     @Override
-    public void addOpariToUmea(String izena, String opariIzena){
+    public void addOpariToUmea(String izena, String opariIzena) {
         Umea umea = umeaCollection.find(eq("izena", izena)).first();
         List<String> opariak = umea.getOpariak();
         opariak.add(opariIzena);
         umeaCollection.updateOne(eq("izena", izena), new Document("$set", new Document("opariak", opariIzena)));
     }
-    public String findAllPresents(){
+
+    public String findAllPresents() {
         StringBuffer emaitza = new StringBuffer();
         umeaCollection.find().into(new ArrayList<>()).forEach((umea) -> {
             umea.getOpariak().forEach((opari) -> {
                 emaitza.append(opari + ";");
             });
         });
-        String returneo = ((emaitza.deleteCharAt(emaitza.length() -1))).toString();
+        String returneo = ((emaitza.deleteCharAt(emaitza.length() - 1))).toString();
         return returneo;
         // return emaitza.deleteCharAt(emaitza.length() -1);
     }
